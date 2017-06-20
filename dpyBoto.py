@@ -30,28 +30,28 @@ for i in range(0, len(recordSets)):
         thisip = recordSets[i]["ResourceRecords"][0]["Value"]
         recordtype = recordSets[i]["Type"]
         if subdomain in subdomain_name:
-	  if thisip != current_ip:
-		full_domain = subdomain + ".YOURURL.HERE"
-		batchDict ={
-        			"Comment": "COMMNETS GO HERE",
-        			"Changes":
-        			[
-            				{
-                				"Action": "UPSERT", #dont change this
-                				"ResourceRecordSet":
-                				{
-                    					"Name": full_domain,
-                    					"Type": "A",
-                    					"ResourceRecords":
-                    					[
-                       		 				{
-                       		     					"Value": current_ip 
-                       		 				}
-                    					],
-							"TTL": 3600
-                				}
-            				}
-        			]
-    			}
-                response = client.change_resource_record_sets(HostedZoneId='XXXXXXXXXXXXXX',ChangeBatch=batchDict)
-		print(full_domain)
+          if thisip != current_ip:
+          full_domain = subdomain + ".YOURURL.HERE"
+          batchDict ={
+                    "Comment": "COMMNETS GO HERE",
+                    "Changes":
+                    [
+                          {
+                              "Action": "UPSERT", #dont change this
+                              "ResourceRecordSet":
+                              {
+                                    "Name": full_domain,
+                                    "Type": "A",
+                                    "ResourceRecords":
+                                    [
+                                        {
+                                              "Value": current_ip 
+                                        }
+                                    ],
+                    "TTL": 3600
+                              }
+                          }
+                    ]
+                }
+          response = client.change_resource_record_sets(HostedZoneId='XXXXXXXXXXXXXX',ChangeBatch=batchDict)
+          print(full_domain)
